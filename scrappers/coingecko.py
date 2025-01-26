@@ -3,6 +3,7 @@ from selenium.common.exceptions import NoSuchElementException, WebDriverExceptio
 from driver.driver import gen_driver
 import time
 import csv
+from database.database import insert_data
 
 
 def scrape_gecko():
@@ -55,6 +56,9 @@ def scrape_gecko():
                         market_cap = row_data[9]
 
                         writer.writerow(
+                            [serial_no,coin_name, price, one_hour_change, twenty_four_hour_change, seven_day_change,
+                             twenty_four_hour_volume, market_cap])
+                        insert_data(
                             [serial_no,coin_name, price, one_hour_change, twenty_four_hour_change, seven_day_change,
                              twenty_four_hour_volume, market_cap])
                         print(
