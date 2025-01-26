@@ -42,8 +42,11 @@ def scrape_gecko():
 
                 for row in rows:
                     # print(row)
+                    
                     cells = row.find_elements(By.TAG_NAME, 'td')
                     row_data = [cell.text for cell in cells]
+                    
+                    
                     if row_data:
                         # print(row_data)
                         serial_no = row_data[1]
@@ -65,6 +68,7 @@ def scrape_gecko():
                             [coin_name, price, one_hour_change, twenty_four_hour_change, seven_day_change,
                              twenty_four_hour_volume, market_cap])
                         data.append(row_data)
+                        
 
                 try:
                     next_button = driver.find_element(By.XPATH, '//a[@href and contains(@href, "?page=")]')
