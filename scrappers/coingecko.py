@@ -1,26 +1,16 @@
-import requests
-from bs4 import BeautifulSoup
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, WebDriverException
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
+from driver.driver import gen_driver
 
 def scrape_gecko():
     url = 'https://www.coingecko.com/'
+
     
+    driver = gen_driver()
     
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')  
-    chrome_options.add_argument('--disable-gpu')  
-    chrome_options.add_argument('--no-sandbox')  
-    chrome_options.add_argument('--disable-dev-shm-usage')  
-    chrome_options.add_argument('--window-size=1920,1080') 
-    
-    driver = webdriver.Chrome()
     
     try:
-        driver.set_page_load_timeout(10)
+        # driver.set_page_load_timeout(10)
         driver.get(url)
         
         try:
@@ -28,19 +18,19 @@ def scrape_gecko():
         
         except NoSuchElementException:
             print('Table not found')
-            driver.save_screenshot('screenshot.png')
+            driver.save_screenshot('table_not_found.png')
             return
     
         rows = table.find_elements(By.TAG_NAME, 'tr')
-    
+        data = []
+
         for row in rows:
+            # print(row)
             cells = row.find_elements(By.TAG_NAME, 'td')
-            data = [cell.text for cell in cells]
-            print(data)
-        
-    
-        
-        
+            row_data = [cell.text for cell in cells]
+            if row_data:
+                data.append(row_data)
+        return data
 
     except WebDriverException as e:
         print("Webdriver error: ", e)   
@@ -51,5 +41,7 @@ def scrape_gecko():
     
     finally:
         driver.quit()
+    return data
+
     
 
