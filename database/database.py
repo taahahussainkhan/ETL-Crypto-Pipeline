@@ -32,12 +32,12 @@ def insert_data(data):
         create_script = '''CREATE TABLE IF NOT EXISTS crypto_data (
             serial_no  INT,
             coin_name  VARCHAR(20),
-            price VARCHAR(20) ,
-            one_hour_change VARCHAR(20) ,
-            twenty_four_hour_change VARCHAR(20) ,
-            seven_day_change VARCHAR(20) ,
-            twenty_four_hour_volume VARCHAR(20) ,
-            market_cap VARCHAR(20) ,
+            price VARCHAR(30) ,
+            one_hour_change VARCHAR(30) ,
+            twenty_four_hour_change VARCHAR(30) ,
+            seven_day_change VARCHAR(30) ,
+            twenty_four_hour_volume VARCHAR(30) ,
+            market_cap VARCHAR(30) ,
             source VARCHAR(20)
         );'''
         
