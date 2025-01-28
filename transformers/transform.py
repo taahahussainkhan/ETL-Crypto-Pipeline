@@ -1,22 +1,25 @@
 
 
-from load.load_to_csv import load_to_csv
+from transformers.money_converter import pkr_to_usd
+from transformers.utils import extract_coin_name_and_symbol
+sr_no = 1
 
 def transform_coin_base(data):
+    global sr_no
     processed_data = [
-        data[1] ,
-        data[4],
-        data[2],
+        sr_no,
+        extract_coin_name_and_symbol(data[0] ),
+        pkr_to_usd(data[1]),
+        "1h change",
         data[5],
         data[1],
         data[1],
-        data[1],
-        data[1],
+        pkr_to_usd(data[4]),
         "Coin Base",
     ]
     
-    print(processed_data)
-    
+    print("Processed data",processed_data)
+    sr_no += 1
     return processed_data
     
     
@@ -33,6 +36,6 @@ def transform_coin_gecko(data):
         "Coin Gecko",
     ]
     
-    print(processed_data)
+    # print(processed_data)
     
     return processed_data

@@ -7,10 +7,10 @@ from load.load_to_csv import load_to_csv
 
 crypto_data = []
 
-coingecko = scrape_gecko()
-print("Coin Gecko: ", coingecko)
+# coingecko = scrape_gecko()
+# print("Coin Gecko: ", coingecko)
 
-crypto_data.extend(coingecko)
+# crypto_data.extend(coingecko)
 # scrape_coin_market_cap()
 
 
@@ -18,7 +18,7 @@ print("Scraping Coin Market Cap...")
 
 
 coin_base = scrape_coin_base()
-print("Coin Base: ", coin_base)
+# print("Coin Base: ", coin_base)
 crypto_data.extend(coin_base)
 
 
