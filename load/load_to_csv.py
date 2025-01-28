@@ -4,7 +4,7 @@ import csv
 
 
 def load_to_csv(data):
-    with open("coin-base.csv", mode="w", newline="") as file:
+    with open("crypto-data.csv", mode="w", newline="") as file:
             writer = csv.writer(file)
 
             writer.writerow(

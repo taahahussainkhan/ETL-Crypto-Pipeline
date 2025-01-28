@@ -40,7 +40,7 @@ def scrape_coin_base():
 
                 cells = row.find_elements(By.TAG_NAME, "td")
                 row_data = [cell.text for cell in cells]
-                print(row_data)
+                # print(row_data)
 
                 if row_data:
                     transformed_data = transform_coin_base(row_data)
@@ -61,12 +61,12 @@ def scrape_coin_base():
                 print("Next button not found")
                 print("Closing.....")
                 break
-        if data:
-            load_to_csv(data)
-            print("Data loaded to CSV successfully")
-            load_to_db(data)
-            print("Data loaded to database successfully")
-        # return data
+        # if data:
+        #     load_to_csv(data)
+        #     print("Data loaded to CSV successfully")
+        #     load_to_db(data)
+        #     print("Data loaded to database successfully")
+        return data
 
     except WebDriverException as e:
         print("Webdriver error: ", e)
