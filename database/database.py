@@ -1,8 +1,14 @@
 import psycopg2
-import json
+# from dotenv import load_dotenv
+import os
+
 # from scrappers.coingecko import scrape_gecko
 
-
+hostname = 'localhost'
+database = 'crypto_data'
+username = 'postgres'
+password = 'taaha'
+port = 5432
 
 
 def insert_data(data):
@@ -14,11 +20,11 @@ def insert_data(data):
 
     try:
         conn = psycopg2.connect(
-            host=config['hostname'],
-            database=config['database'],
-            user=config['username'],
-            password=config['password'],
-            port=config['port']
+            host=hostname,
+            database=database,
+            user=username,
+            password=password,
+            port=port
         )
 
         cur = conn.cursor()
@@ -31,14 +37,15 @@ def insert_data(data):
             twenty_four_hour_change VARCHAR(20) ,
             seven_day_change VARCHAR(20) ,
             twenty_four_hour_volume VARCHAR(20) ,
-            market_cap VARCHAR(20) 
+            market_cap VARCHAR(20) ,
+            source VARCHAR(20)
         );'''
         
         cur.execute(create_script)
         
         
-        insert_script = '''INSERT INTO crypto_data (serial_no, coin_name, price, one_hour_change, twenty_four_hour_change, seven_day_change, twenty_four_hour_volume, market_cap) 
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
+        insert_script = '''INSERT INTO crypto_data (serial_no, coin_name, price, one_hour_change, twenty_four_hour_change, seven_day_change, twenty_four_hour_volume, market_cap, source) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s)'''
 
 
         cur.execute(insert_script, data)

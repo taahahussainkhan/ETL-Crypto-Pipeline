@@ -19,7 +19,7 @@ def scrape_gecko():
             writer = csv.writer(file)
 
             writer.writerow(
-                ['Serial No', 'Coin', 'Price', '1h Change', '24h Change', '7d Change', '24h Volume', 'Market Cap'])
+                ['Serial No', 'Coin', 'Price', '1h Change', '24h Change', '7d Change', '24h Volume', 'Market Cap', "Source"])
 
             page_no = 1
 
@@ -48,25 +48,25 @@ def scrape_gecko():
                     
                     
                     if row_data:
-                        # print(row_data)
+                        print(row_data)
                         serial_no = row_data[1]
                         coin_name = row_data[2]
                         price = row_data[4]
                         one_hour_change = row_data[5]
                         twenty_four_hour_change = row_data[6]
                         seven_day_change = row_data[7]
-                        twenty_four_hour_volume = row_data[8]
-                        market_cap = row_data[9]
+                        twenty_four_hour_volume = row_data[9]
+                        market_cap = row_data[10]
 
                         writer.writerow(
                             [serial_no,coin_name, price, one_hour_change, twenty_four_hour_change, seven_day_change,
-                             twenty_four_hour_volume, market_cap])
+                             twenty_four_hour_volume, market_cap, "CoinGecko"])
                         insert_data(
                             [serial_no,coin_name, price, one_hour_change, twenty_four_hour_change, seven_day_change,
-                             twenty_four_hour_volume, market_cap])
+                             twenty_four_hour_volume, market_cap,"CoinGecko"])
                         print(
                             [coin_name, price, one_hour_change, twenty_four_hour_change, seven_day_change,
-                             twenty_four_hour_volume, market_cap])
+                             twenty_four_hour_volume, market_cap, "CoinGecko"])
                         data.append(row_data)
                         
 
