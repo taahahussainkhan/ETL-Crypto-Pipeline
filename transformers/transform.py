@@ -8,15 +8,15 @@ def transform_coin_base(data):
     global sr_no
     processed_data = [
         sr_no,
-        extract_coin_name_and_symbol(data[0] ),
-        pkr_to_usd(data[1]),
+        extract_coin_name_and_symbol(data[1] ),
+        pkr_to_usd(data[2]),
         "1h change",
         data[5],
         data[1],
         data[1],
         pkr_to_usd(data[4]),
         "Coin Base",
-    ]
+    ] 
     
     print("Processed data",processed_data)
     sr_no += 1
